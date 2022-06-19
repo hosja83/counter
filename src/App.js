@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+const App = () => { //Also declare using const App = () => {} does not hoist to top of scope
+  const [count, setCount] = useState(0);
+
+  const incrementCount = () => {
+    setCount(count + 1); //Cannot use pre/post incr/decr operators b/c it directly changes value of state
+  };
+
+  const decrementCount = () => {
+    setCount(count - 1);
+  };
+
+  const resetCount = () => {
+    setCount(0);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>{count}</div>
+      <div className="incr-decr-container">
+        <button onClick={incrementCount}>+ Increment</button>
+        <button onClick={decrementCount}>- Decrement</button>
+      </div>
+      <button onClick={resetCount}>Reset</button>
     </div>
   );
-}
+};
 
 export default App;
